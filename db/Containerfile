@@ -1,0 +1,8 @@
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+COPY --chown=mssql:root --chmod=0755 ./container-entrypoint.sh /usr/src/app/
+COPY --chown=mssql:root --chmod=0755 ./db-init.sh /usr/src/app/
+COPY --chown=mssql:root --chmod=0755 ./PrepareServer.sql /usr/src/app/
+COPY --chown=mssql:root --chmod=0755 ./CreateDatabase.sql /usr/src/app/
+
+ENTRYPOINT ["/bin/bash", "/usr/src/app/container-entrypoint.sh"]

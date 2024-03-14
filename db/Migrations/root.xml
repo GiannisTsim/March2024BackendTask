@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Initialize tSQLt -->
+    <changeSet id="tSQLt" author="${AUTHOR}">
+        <sqlFile path="tSQLt_V1.0.8083.3529/tSQLt.class.sql" relativeToChangelogFile="true" endDelimiter="GO"/>
+        <rollback>
+            <sql>
+                EXEC tSQLt.Uninstall;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <!-- Include v1 changelog -->
+    <include file="v1/v1.xml" relativeToChangelogFile="true"/>
+    
+</databaseChangeLog>

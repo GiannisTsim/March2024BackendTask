@@ -1,0 +1,45 @@
+name: march2024-backend-task
+
+services:
+  mssql:
+    build:
+      context: .
+      dockerfile: Containerfile
+    environment:
+      - TZ=${TIMEZONE}
+      - MSSQL_PID=Developer
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+      - MSSQL_COLLATION=SQL_Latin1_General_CP1_CS_AS
+      - SQLCMDUSER=sa
+      - SQLCMDPASSWORD=${MSSQL_SA_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -d ${DB_NAME} -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  liquibase:
+    image: liquibase/liquibase
+    environment:
+      - TZ=${TIMEZONE}
+      - LIQUIBASE_STRICT=true
+      - LIQUIBASE_COMMAND_CHANGELOG_FILE=root.xml
+      - LIQUIBASE_COMMAND_URL=jdbc:sqlserver://mssql;databaseName=${DB_NAME};encrypt=true;trustServerCertificate=true;
+      - LIQUIBASE_COMMAND_USERNAME=sa
+      - LIQUIBASE_COMMAND_PASSWORD=${MSSQL_SA_PASSWORD}
+      - AUTHOR=${MIGRATION_AUTHOR}
+    volumes:
+      - ./Migrations:/liquibase/changelog
+    profiles:
+      - tools
+
+volumes:
+  mssql-data:
+

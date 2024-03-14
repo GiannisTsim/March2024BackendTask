@@ -1,0 +1,38 @@
+@HostAddress = http://localhost:5229
+
+### Query products
+GET {{HostAddress}}/api/products
+Accept: application/json
+
+### Query single product
+GET {{HostAddress}}/api/products/1
+Accept: application/json
+
+### Add product
+POST {{HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Baz",
+  "description": "Lorem ipsum",
+  "price": 12.3
+}
+
+### Modify product
+PUT {{HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "updatedDtm": "2024-03-12T19:21:12.6364306+02:00",
+  "name": "Bar",
+  "description": "Lorem ipsum dolor sit amet",
+  "price": 64.2
+}
+
+### Delete product
+DELETE {{HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "updatedDtm": "2024-03-12T19:38:07.8168083+02:00"
+}

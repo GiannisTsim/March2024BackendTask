@@ -1,0 +1,38 @@
+@HostAddress = http://localhost:5229
+
+### Query customers
+GET {{HostAddress}}/api/customers
+Accept: application/json
+
+### Query single customer
+GET {{HostAddress}}/api/customers/1
+Accept: application/json
+
+### Add customer
+POST {{HostAddress}}/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Foo",
+  "lastName": "Bar",
+  "discountPct": 0.1000
+}
+
+### Modify customer
+PUT {{HostAddress}}/api/customers/1
+Content-Type: application/json
+
+{
+  "updatedDtm": "2024-03-12T19:44:28.0750066+02:00",
+  "firstName": "Foo",
+  "lastName": "Bar",
+  "discountPct": 0.19999
+}
+
+### Delete customer
+DELETE {{HostAddress}}/api/customers/1
+Content-Type: application/json
+
+{
+  "updatedDtm": "2024-03-12T19:44:55.1922804+02:00"
+}

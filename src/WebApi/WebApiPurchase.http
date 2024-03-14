@@ -1,0 +1,69 @@
+@HostAddress = http://localhost:5229
+
+### Query purchases
+GET {{HostAddress}}/api/purchases
+Accept: application/json
+
+### Query customer's purchases
+GET {{HostAddress}}/api/customers/1/purchases
+Accept: application/json
+
+### Query purchase details
+GET {{HostAddress}}/api/customers/1/purchases/2024-03-13T21:08:30.6917833+02:00
+Accept: application/json
+
+### Add purchase
+POST {{HostAddress}}/api/customers/1/purchases
+Content-Type: application/json
+
+{
+  "items" : [
+    {
+      "productNo": 1,
+      "quantity": 1
+    },
+    {
+      "productNo": 2,
+      "quantity": 13
+    },
+    {
+      "productNo": 34,
+      "quantity": 1
+    },
+    {
+      "productNo": 1,
+      "quantity": -5
+    },
+    {
+      "productNo": 1,
+      "quantity": 15
+    },
+    {
+      "productNo": null,
+      "quantity": -5
+    },
+    {
+      "productNo": null,
+      "quantity": null
+    },
+    {
+      "productNo": 3,
+      "quantity": 6
+    }
+  ]
+}
+
+### Add purchase
+POST {{HostAddress}}/api/customers/1/purchases
+Content-Type: application/json
+
+{
+  "items" : [
+  ]
+}
+
+### Submit purchase
+POST {{HostAddress}}/api/customers/1/purchases/2024-03-14T15:14:05.0951241+02:00/submit
+
+
+
