@@ -9,6 +9,7 @@
     <include file="view.sql" relativeToChangelogFile="true"/>
     <include file="message.sql" relativeToChangelogFile="true"/>
     <includeAll path="transaction" relativeToChangelogFile="true"/>
+    <include file="security.sql" relativeToChangelogFile="true"/>
     <include file="test.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

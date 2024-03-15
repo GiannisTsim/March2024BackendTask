@@ -35,6 +35,7 @@ services:
       - LIQUIBASE_COMMAND_USERNAME=sa
       - LIQUIBASE_COMMAND_PASSWORD=${MSSQL_SA_PASSWORD}
       - AUTHOR=${MIGRATION_AUTHOR}
+      - WEB_APP_PASSWORD
     volumes:
       - ./Migrations:/liquibase/changelog
     profiles:
