@@ -10,9 +10,7 @@ builder.Services.AddControllers
 
 builder.Services.AddInfrastructure();
 
-builder.Services.AddExceptionHandler<CustomerExceptionHandler>();
-builder.Services.AddExceptionHandler<ProductExceptionHandler>();
-builder.Services.AddExceptionHandler<PurchaseExceptionHandler>();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
