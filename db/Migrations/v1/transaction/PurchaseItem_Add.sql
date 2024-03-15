@@ -31,11 +31,12 @@ BEGIN
                SELECT 1
                FROM Customer
                WHERE CustomerNo = @CustomerNo
+                 AND IsObsolete = 0
            )
         BEGIN
             RAISERROR (70005, -1, @State, @CustomerNo);
         END
-    -- Else if Purchase exists, ensure it is not submitted
+        -- Else if Purchase exists, ensure it is not submitted
     ELSE IF EXISTS
         (
             SELECT 1
@@ -53,6 +54,7 @@ BEGIN
             SELECT 1
             FROM Product
             WHERE ProductNo = @ProductNo
+              AND IsObsolete = 0
         )
         BEGIN
             RAISERROR (60005, -1, @State, @ProductNo);
