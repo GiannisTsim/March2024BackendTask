@@ -9,7 +9,7 @@ GET {{HostAddress}}/api/customers/1/purchases
 Accept: application/json
 
 ### Query purchase details
-GET {{HostAddress}}/api/customers/1/purchases/2024-03-13T21:08:30.6917833+02:00
+GET {{HostAddress}}/api/customers/1/purchases/2024-03-15T07:42:55.7108015+02:00
 Accept: application/json
 
 ### Add purchase
@@ -63,7 +63,7 @@ Content-Type: application/json
 }
 
 ### Submit purchase
-POST {{HostAddress}}/api/customers/1/purchases/2024-03-14T15:14:05.0951241+02:00/submit
+POST {{HostAddress}}/api/customers/1/purchases/2024-03-15T07:42:55.7108015+02:00/submit
 
 
 

@@ -22,6 +22,7 @@ public class PurchaseController : ControllerBase
         _messageBus = messageBus;
     }
 
+    // TODO: Add filtering & paging
     [HttpGet("/api/purchases")]
     public async Task<ActionResult<IEnumerable<PurchaseSimple>>> GetAsync()
     {
@@ -29,6 +30,7 @@ public class PurchaseController : ControllerBase
         return Ok(purchases);
     }
 
+    // TODO: Add filtering & paging
     [HttpGet("/api/customers/{customerNo:int}/purchases")]
     public async Task<ActionResult<IEnumerable<PurchaseSimple>>> GetByCustomerAsync([FromRoute] int customerNo)
     {

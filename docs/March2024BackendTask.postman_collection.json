@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "faf3e517-ccc2-4c44-974a-486ac7bbec31",
+		"name": "March2024BackendTask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7916618"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/products",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/products/:productNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"products",
+								":productNo"
+							],
+							"variable": [
+								{
+									"key": "productNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Foo\",\n    \"description\": \"Lorem ipsum dolor sit amet\",\n    \"price\": 12.3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/products",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const url = pm.collectionVariables.get(\"apiBaseUrl\") + \"/products/\" + pm.request.url.variables.get(\"productNo\");",
+									"pm.sendRequest(url, function (err, response) {",
+									"    pm.variables.set(\"updatedDtm\", response.json().updatedDtm);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updatedDtm\": \"{{updatedDtm}}\",\n    \"name\": \"Bar\",\n    \"description\": \"Lorem ipsum dolor sit amet\",\n    \"price\": 56.2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/products/:productNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"products",
+								":productNo"
+							],
+							"variable": [
+								{
+									"key": "productNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const url = pm.collectionVariables.get(\"apiBaseUrl\") + \"/products/\" + pm.request.url.variables.get(\"productNo\");",
+									"pm.sendRequest(url, function (err, response) {",
+									"    pm.variables.set(\"updatedDtm\", response.json().updatedDtm);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updatedDtm\": \"{{updatedDtm}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/products/:productNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"products",
+								":productNo"
+							],
+							"variable": [
+								{
+									"key": "productNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"discountPct\": 0.55\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const url = pm.collectionVariables.get(\"apiBaseUrl\") + \"/customers/\" + pm.request.url.variables.get(\"customerNo\");",
+									"pm.sendRequest(url, function (err, response) {",
+									"    pm.variables.set(\"updatedDtm\", response.json().updatedDtm);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updatedDtm\": \"{{updatedDtm}}\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"discountPct\": 0.15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const url = pm.collectionVariables.get(\"apiBaseUrl\") + \"/customers/\" + pm.request.url.variables.get(\"customerNo\");",
+									"pm.sendRequest(url, function (err, response) {",
+									"    pm.variables.set(\"updatedDtm\", response.json().updatedDtm);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"updatedDtm\": \"{{updatedDtm}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Get purchases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/purchases",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get customer's purchases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo/purchases",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo",
+								"purchases"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find purchase details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo/purchases/:purchaseDtm",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo",
+								"purchases",
+								":purchaseDtm"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								},
+								{
+									"key": "purchaseDtm",
+									"value": "2024-03-15T07:54:38.5717359+02:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"items\" : [\n    {\n      \"productNo\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"productNo\": 2,\n      \"quantity\": 13\n    },\n    {\n      \"productNo\": 34,\n      \"quantity\": 1\n    },\n    {\n      \"productNo\": 1,\n      \"quantity\": -5\n    },\n    {\n      \"productNo\": 1,\n      \"quantity\": 15\n    },\n    {\n      \"productNo\": null,\n      \"quantity\": -5\n    },\n    {\n      \"productNo\": null,\n      \"quantity\": null\n    },\n    {\n      \"productNo\": 3,\n      \"quantity\": 6\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo/purchases",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo",
+								"purchases"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{apiBaseUrl}}/customers/:customerNo/purchases/:purchaseDtm/submit",
+							"host": [
+								"{{apiBaseUrl}}"
+							],
+							"path": [
+								"customers",
+								":customerNo",
+								"purchases",
+								":purchaseDtm",
+								"submit"
+							],
+							"variable": [
+								{
+									"key": "customerNo",
+									"value": "1"
+								},
+								{
+									"key": "purchaseDtm",
+									"value": "2024-03-15T07:54:38.5717359+02:00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiBaseUrl",
+			"value": "http://localhost:5229/api",
+			"type": "string"
+		}
+	]
+}

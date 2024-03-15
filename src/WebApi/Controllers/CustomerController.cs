@@ -16,6 +16,7 @@ public class CustomerController : ControllerBase
         _repository = repository;
     }
 
+    // TODO: Add filtering & paging
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Customer>>> GetAsync()
     {
